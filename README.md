@@ -1,3 +1,8 @@
+ <link rel="stylesheet" href="https://pages.nist.gov/nist-header-footer/css/nist-combined.css">
+      <script src="https://code.jquery.com/jquery-3.6.2.min.js" type="text/javascript" defer="defer"></script>
+      <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
+    
+
 # NIST_Sample
 NIST Sample Repository 
 NIST Metals [Sample Repository](https://sample.nist.gov) is being developed to help track and link metal samples and results using a customized version of the NIST CDCS software (Configurable Data Curation System https://cdcs.nist.gov/ ). This document provides an overview of the structure of the repository and answers to frequently asked questions.
