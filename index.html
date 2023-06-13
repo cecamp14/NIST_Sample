@@ -1,7 +1,22 @@
-{# Import the theme's layout. #}
-{% extends "!layout.html" %}
 
-{% block extrahead %}
+  <!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>NIST Metal Sample Repository </title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom-styles.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/custom.js"></script>
+
+
 <link rel="stylesheet" href="https://pages.nist.gov/nist-header-footer/css/nist-combined.css">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
   <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
@@ -9,7 +24,8 @@
 
 <script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
 <script>
-$(document).ready(function(){
+
+  $(document).ready(function(){
   // Mark external (non-nist.gov) A tags with class "external"
   //If the adress start with https and ends with nist.gov
   var re_nist = new RegExp('^https?:\/\/((^\/)*\.)*nist\\.gov(\/|$)');
@@ -30,6 +46,13 @@ $(document).ready(function(){
 });
 </script>
 <link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
+
+  </head>
+
+  <section id="welcome-to-nexuslims">
+<h1>NIST Sample Repository!<></h1>
+<p>The project serves as thedocumentation space for the Metals Sample REpository .</p>
+  
 {% endblock %}
 
 {# Add some extra stuff before and use existing with 'super()' call. #}
