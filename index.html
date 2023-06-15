@@ -1,83 +1,35 @@
 
-
-
-<html>
-  
- <header class="nist-header">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NIST Pages Template</title>
-	<meta name="viewport" content="width=device-width">
-	<meta name="description" content="{{ site.description }}">
-	<link rel="canonical" href="{{ site.rooturl }}{{ page.url }}">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<!-- Google Analytics -->
-	<!--<script type="text/javascript" id="_fed_an_js_tag" src="http://www.nist.gov/js/federated-analytics.all.min.js?agency=NIST&subagency=mml&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c"></script> -->
-	<!-- DAP Analytics -->
-	<script type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NIST&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c"></script>
-
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="{{ site.baseurl }}/static/css/NISTStyle.css">
-	<link rel="stylesheet" href="{{ site.baseurl }}/static/css/NISTPages.css">
-
-	<h1>
-	  <a class="nist-logo" target="_blank" href="http://www.nist.gov/" title="Go to nist.gov">National Institute of Standards and Technology</a>
-	</h1>
-	<div class="nist-links">
-	  <a class="nist-links-button" target="_blank" href="http://www.nist.gov">NIST Website</a>
-	  <a class="nist-links-button mobile-hide" target="_blank" href="http://www.nist.gov/public_affairs/nandyou.cfm">About NIST</a>
-	  <a class="nist-links-button mobile-hide" target="_blank" href="https://github.com/usnistgov">usnistgov on GitHub</a>
-	</div>
-	
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-</header>
-	
-    <title>NIST Metal Sample Repository </title>
-
-
-
-<script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
-
-  </head>
-
-
-<h1>NIST Sample Repository</h1>
-<p>The project serves as the documentation space for the Metals Sample Repository .</p>
-  
-
-  
-  
-<script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
-<script>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-        <br/>
-        
-        
-  <hr \>
-<section class="footer">
-<br><a target="_blank" href="http://www.nist.gov/public_affairs/privacy.cfm#privpolicy">Privacy Policy</a> | <a target="_blank" href="http://www.nist.gov/public_affairs/privacy.cfm#secnot">Security Notice</a> | <a href="http://www.nist.gov/public_affairs/privacy.cfm#accesstate">Accessibility Statement</a> | <a target="_blank" href="mailto:data@nist.gov?subject=Feedback%20on%20Web%20Site%20Template">Send feedback</a>
-</section>    
-  
-<div id="sourcelink">
-  <a href="_sources/index.rst.txt"
-     rel="nofollow">View page source</a>
-</div>
-      
-  
-  </div>
-</footer>
-
-  </body>
-</html>
+layout: default
+title: Home
+---
+<section class="home home-title">
+  <h1>NIST Pages Template</h1>
+</section>
+<section class="home-about">
+	<p>This template incorporates many of elements needed to comply with NIST guidelines, the Header provides a common look and feel for pages.nist.gov. The Footer links point to pages on www.nist.gov.</p>
+	<p>The source code for this page is available on <a target="_blank" href="https://github.com/usnistgov/Pages-Template">Original GitHub Repository</a>
+	<h2> To use this page template, follow these instructions</h2>
+	<ol>
+		<li>Read this template and the included README.md file for instructions on how to modify the template to suit your needs.</li>
+		<li>If you would like to incorporate any more advanced features, please refer to the <a target="_blank" href="http://jekyllrb.com/docs/home/">Jekyll Documentation</a> for more information or to begin.</li>
+		<li>When you are ready, you can choose a method of continuing:
+			<ol>
+				<li>Create a new orphan branch in your repository called "nist-pages" and extract the downloaded zip file from this repo into it.</li>
+				<li>Clone this repository into a new branch of your repository named "nist-pages".</li>
+			</ol>
+			</li>
+		<li>When you are ready, you will replace this index.html with your preferred webpage.</li>
+		<li>Incorporate the following elements in your new page:
+			<ul>
+				<li>Link to primary descriptive text about this page on nist.gov.  For example this could be https://example.nist.gov or https://nist.gov/example/path.</li>
+				<li>Citation (to cite a database, we suggest use of a citation format appropriate to that of an edited book:
+				<blockquote>(Principal Investigator), (Site Name), National Institute of Standards and Technology, Gaithersburg MD, 20899, (http://pages.nist.gov/xxxxx), (retrieved [date of access])).</blockquote></li>
+				<li>Contact information (Added into the page, or you can modify the mailto in the footer file <code>_includes/NISTPagesFooter.html</code></li>
+				<li>Last upated date</li>
+			</ul>
+		</li>
+		<li>Once you are satisfied with your index.html file, you can remove this example file entirely.</li>
+	</ol>
+	<p>In addition, if you would like to collaborate to make this template better, easier-to-use, or more flexible, please <a mailto:"data@nist.gov" subject="Feedback%20On%20Webs%20Site%20Template">contact us</a> (or use the "Send Feedback" link below) or simply fork this repository and send pull requests for review.</p>
+</section>
+ 
