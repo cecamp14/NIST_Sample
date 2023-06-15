@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html>
- <head>
-  
-   <link rel="stylesheet" href="https://pages.nist.gov/nist-header-footer/css/nist-combined.css">
-      <script src="https://code.jquery.com/jquery-3.6.2.min.js" type="text/javascript" defer="defer"></script>
-      <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
+<head>
+<!--
+--> 
+{% include NISTPagesHeader.html %}
+
+</head>
+<body>
  
- 
-   $(document).ready(function () {
-    $('#repotable').DataTable({
-//     dom: '<"top"iB>t<"bottom"flp><"clear">',
-//     buttons: [
-//      {
-//       extend: 'print',
-//       title: 'NIST Pages Table of Contents'
-//      }
-//     ]
-    });
-   });
-  </script>
- </head>
- <body>
   {{ content }}
- </body>
+  <footer role="contentInfo" class="site-footer">
+    <div class="section-container">
+      <div class="section-content">     
+      </div>
+    </div>
+  </footer>
+ 
+{% include NISTPagesFooter.html %}
+</body>
 </html>
