@@ -1,34 +1,40 @@
 <!DOCTYEPE html>
 <html lang="en">
 <head>
-	 {
-  background: #000;
-  font-family: Helvetica, Arial, sans-serif;
-  padding: 10px 16px 0;
-  font-size: 16px;
-}
-
+ <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+ <title>Welcome NIST Metal Sample Repository &#8212; documentation</title>
 
  <link rel="stylesheet" href="https://pages.nist.gov/nist-header-footer/css/nist-combined.css">
       <script src="https://code.jquery.com/jquery-3.6.2.min.js" type="text/javascript" defer="defer"></script>
       <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
 	
 
-  <!--script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script-->
-  <!--script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script-->
-  <script type="text/javascript">
-   $(document).ready(function () {
-    $('#repotable').DataTable({
-//     dom: '<"top"iB>t<"bottom"flp><"clear">',
-//     buttons: [
-//      {
-//       extend: 'print',
-//       title: 'NIST Pages Table of Contents'
-//      }
-//     ]
-    });
-   });
-  </script>
+
+<script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Mark external (non-nist.gov) A tags with class "external"
+  //If the adress start with https and ends with nist.gov
+  var re_nist = new RegExp('^https?:\/\/((^\/)*\.)*nist\\.gov(\/|$)');
+  var re_nist_github = new RegExp('^https:\/\/github.com\/usnistgov(\/|$)');
+  //Regex to find address that start with https
+  var re_absolute_address = new RegExp('^((https?:)?\/\/)');
+  $("a").each(function(){
+    var url=$(this).attr('href');
+    if(re_nist.test(url) || !re_absolute_address.test(url) || re_nist_github.test(url)){
+      $(this).addClass('leave_notice_local');
+    }else{
+      //This a href appears to be external, so tag it
+      $(this).addClass('leave_notice_external');
+    }
+  });
+  // Add leaveNotice to external A elements
+  $('a.leave_notice_external').leaveNotice();
+});
+</script>
+<link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
+
 
 
 <h1>
