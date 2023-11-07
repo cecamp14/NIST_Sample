@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="SampleNew" type="HardnessSample"/>
+	<xs:complexType name="HardnessSample">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="SampleID" type="SampleIDType"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="SampleImage" type="remote-file-type"/>
+			<xs:element minOccurs="1" name="ExperimentDate" type="xs:date"/>
+			<xs:element minOccurs="0" name="TestID" type="xs:string"/>
+			<xs:element minOccurs="1" maxOccurs="unbounded" name="SampleOwner" type="Person"/>
+			<xs:element minOccurs="0" name="SampleLocation" type="xs:string"/>
+			<xs:element minOccurs="1" name="MaterialComposition" type="MaterialCompositionType"/>
+			<xs:element name="SampleGeometry" type="GeometryType"/>
+			<xs:element name="Instrument" type="xs:string"
+			             fixed="Nanovea Compact Mechanical Tester  Model: CB500  NIST Property Number N126112.  Location Bldg 223 B159"
+			             />
+			<xs:element minOccurs="1" name="HardnessRecord" type="Hardness"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="SupportingFiles"
+			            type="remote-file-type"/>
+		</xs:sequence>
+		<xs:attribute name="persistid" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="SampleIDType">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="SampleID" type="xs:string"/>
+			<xs:element name="SamplePID" type="xs:anyURI"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="remote-file-type">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="name" type="xs:string"/>
+			<xs:element minOccurs="0" name="description" type="xs:string"/>
+			
+			<xs:element name="FileType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="PDF"/>
+						<xs:enumeration value="xlsx"/>
+						<xs:enumeration value="txt"/>
+						<xs:enumeration value="dat"/>
+						<xs:enumeration value="PNG"/>
+						<xs:enumeration value="JPEG"/>
+						<xs:enumeration value="TIFF"/>
+						<xs:enumeration value="Image"/>
+						<xs:enumeration value="Other"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="comment" type="xs:string"/>
+			<xs:element xmlns:ns0="http://mdcs.ns" maxOccurs="unbounded" minOccurs="0" name="downloadURL"
+			            ns0:_mod_mdcs_="/curator/blob-hoster" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>URL providing direct access to a downloadable file of a dataset.</xs:documentation>
+					<xs:appinfo><module>module-advanced-blob-host</module><label>Upload load a file that can then download using a direct URL</label></xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="linkURL" type="xs:anyURI">
+				<xs:annotation>
+					<xs:appinfo><label>Provide URL link to a file</label></xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="local" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo><label>Location of local file</label></xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Person">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Name" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Email" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Location" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Phone" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Affiliation" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeometryType">
+		<xs:choice>
+			<xs:element name="SolidCylinder" type="SolidCylinderType"/>
+			<xs:element name="HollowCylinder" type="HollowCylinderType"/>
+			<xs:element name="Rectangle" type="RectangularType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="SolidCylinderType">
+		<xs:sequence>
+			<xs:element name="CylinderDiameter" type="xs:float"/>
+			<xs:element name="CylinderLength" type="xs:float"/>
+			<xs:element name="UnitType" type="LengthUnitType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HollowCylinderType">
+		<xs:sequence>
+			<xs:element name="CylinderOuterDiameter" type="xs:float"/>
+			<xs:element name="CylinderInnerDiameter" type="xs:float"/>
+			<xs:element name="CylinderLength" type="xs:float"/>
+			<xs:element name="UnitType" type="LengthUnitType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RectangularType">
+		<xs:sequence>
+			<xs:element name="RectangularLength" type="xs:float"/>
+			<xs:element name="RectaungularWidth" type="xs:float"/>
+			<xs:element name="UnitType" type="LengthUnitType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LengthUnitType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="millimeter"/>
+			<xs:enumeration value="micrometer"/>
+			<xs:enumeration value="picometer"/>
+			<xs:enumeration value="meter"/>
+			<xs:enumeration value="centimeter"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MaterialCompositionType">
+		<xs:choice>
+			<xs:element name="Composition_Link" type="identifier"/>
+			<xs:element name="AM_Material" type="AM_Material_Type"/>
+			<xs:element name="ExistingComposition" type="ExistingComp"/>
+			<xs:element name="OtherCompositionType" type="OtherComposition"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="identifier">
+		<xs:sequence>
+			<xs:element form="unqualified" name="id" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo><label>Identifier Value</label><placeholder>E.g. http://dx.doi.org/123/abc;
+                            http://orcid.org/0000-0000-0000-0000</placeholder></xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element form="unqualified" minOccurs="0" name="type" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo><label>Identifier Type</label><placeholder>E.g. DOI, Handle, ORCID</placeholder></xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AM_Material_Type">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="AMBuildPlate" type="AMBuildPlate_Type"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="AMComposition" type="AMComposition_Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AMBuildPlate_Type">
+		<xs:sequence>
+			<xs:element name="BuildID" type="xs:string"/>
+			<xs:element name="BuildPID" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AMComposition_Type">
+		<xs:sequence>
+			<xs:element name="AMCompositionID" type="xs:string"/>
+			<xs:element name="AMCompositionPID" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExistingComp">
+		<xs:choice>
+			<xs:element name="AM17-4-Plate2" type="AM17-4-Plate2_Comp"/>
+			<xs:element name="Shell_AM-IN718_Composition" type="Shell_AM-IN718_Composition_Comp"/>
+			<xs:element name="AM_SS-17-4_Plate1" type="AM_SS-17-4_Plate1_Comp"/>
+			<xs:element name="AM_SS-17-4_Plate_3A" type="AM_SS-17-4_Plate_3A_Comp"/>
+			<xs:element name="AM_SS-17-4_Plate_3B" type="AM_SS-17-4_Plate_3B_Comp"/>
+			<xs:element name="AM_SS-17-4_Sandvik_Powder" type="AM_SS-17-4_Sandvik_Powder_Comp"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Shell_AM-IN718_Composition_Comp">
+		<xs:sequence>
+			<xs:element name="Composition" type="xs:string" fixed="(Quantity Units: Mass Fraction) 0.5361Ni-0.1904Cr-0.0487Nb-0.1785Fe-0.0296Mo-0.0001Cu-0.0002Co-0.00047Mn-0.0054Al-0.0091Ti-0.00002B- 0.0004C-0.000084N-0.000136O-0.00003P- 0.00001S-0.00074Si"/>
+			<xs:element name="PID" type="xs:anyURI" fixed="https://sample.nist.gov/pid/rest/local/cdcs/3COCPZYSTOVHTZKJ"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AM17-4-Plate2_Comp">
+		<xs:sequence >
+			<xs:element name="Composition" type="xs:string" fixed="(Quantity Units: Mass Fraction) 0.7427Fe-0.1572Cr-0.0424Ni-0.0374Cu-0.0027Nb-0.0011Mo-0.0003C-0.0012N-0.008Si-0.0002P-0.0001S-0.0067Mn"/>
+			<xs:element name="PID" type="xs:anyURI" fixed="https://sample.nist.gov/pid/rest/local/cdcs/BIHIQ3WQRG007KAJ"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AM_SS-17-4_Plate1_Comp">
+		<xs:sequence >
+			<xs:element name="Composition" type="xs:string" fixed="(Quantity Units: Mass Fraction) 0.1572Cr-0.0481Ni-0.0374Cu-0.0067Mn-0.0027Nb-0.0011Mo-0.0003C-0.0015N-0.0002P-0.0080Si-0.0001S"/>
+			<xs:element name="PID" type="xs:anyURI" fixed="https://sample.nist.gov/pid/rest/local/cdcs/7OLQ8EC84VITCSBK"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AM_SS-17-4_Plate_3A_Comp">
+		<xs:sequence >
+			<xs:element name="Composition" type="xs:string" fixed="(Quantity Units: Mass Fraction) 0.1690Cr-0.0477Ni-0.0467Cu-0.0040Mn-0.0022Nb-0.00078Mo-0.0004C-0.0013N-0.00033O-0.00007P-0.0059Si-0.00004S"/>
+			<xs:element name="PID" type="xs:anyURI" fixed="https://sample.nist.gov/pid/rest/local/cdcs/POR7AFJJG05PCA2Z"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AM_SS-17-4_Plate_3B_Comp">
+		<xs:sequence >
+			<xs:element name="Composition" type="xs:string" fixed="(Quantity Units: Mass Fraction) 0.1620Cr-0.0470Ni-0.0420Cu-0.0069Mn-0.0024Nb-0.0007Mo-0.0004C-0.0011N-0.00028O-0.00012P-0.0081Si-0.00004S"/>
+			<xs:element name="PID" type="xs:anyURI" fixed="https://sample.nist.gov/pid/rest/local/cdcs/K9L18MTGE46ZKK5V"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AM_SS-17-4_Sandvik_Powder_Comp">
+		<xs:sequence >
+			<xs:element name="Composition" type="xs:string" fixed="(Quantity Units: Mass Fraction) 0.1660Cr-0.0430Ni-0.0420Cu-0.0070Mn-0.0021Nb-0.0010Mo-0.00025C-0.0008N-0.0007O-0.00019P-0.0060Si-0.00003S"/>
+			<xs:element name="PID" type="xs:anyURI" fixed="https://sample.nist.gov/pid/rest/local/cdcs/YH56LCMX7G0XH3HZ"></xs:element>
+		</xs:sequence>
+	</xs:complexType> 
+	<xs:complexType name = "OtherComposition">
+		<xs:choice>
+			<xs:element name="EnterText"/>
+			<xs:element name="UploadFile" type="remote-file-type"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Hardness">
+		<xs:sequence>
+			<xs:element name="Settings" type="SettingsType"/>
+			<xs:element minOccurs="0" name="StageControlPlus" type="StageControlPlusType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SettingsType">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="ApproachSpeed" type="ApproachSpeedType"/>
+			<xs:element minOccurs="1" name="ContactLoad" type="ContactLoadType"/>
+			<xs:element minOccurs="1" name="Indenter" type="IndenterType"/>
+			<xs:element minOccurs="1" name="Load" type="LoadType"/>		
+			<xs:element minOccurs="1" name="LoadingRate" type="LoadingRateType"/>			
+			<xs:element minOccurs="1" name="UnloadingRate" type="UnloadingRateType"/>			
+			<xs:element minOccurs="1" name="PID_Settings" type="PIDSettings"/>
+			<xs:element minOccurs="1" name="Creep" type="CreepType"/>
+			<xs:element minOccurs="0" name="UseTargetDepth" type="UseTargetDepthType"/>
+			<xs:element minOccurs="0" name="Mapping" type="MappingType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApproachSpeedType">
+		<xs:sequence>
+			<xs:element name="Approach_Speed" type="xs:float"/>
+			<xs:element name="Approach_Speed_Unit" type="xs:string" fixed="microm/min"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactLoadType">
+		<xs:sequence>
+			<xs:element name="Contact_Load" type="xs:float"/>
+			<xs:element name="Contact_Load_Unit" type="xs:string" fixed="mN"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IndenterType">
+		<xs:choice>
+			<xs:element name="Flat-MO-M905" type="xs:string" fixed="Flat-MO-M905"/>
+			<xs:element name="Berkovich-0020" type="xs:string" fixed="Berkovich-0020"/>
+			<xs:element name="Flat-MO-MINDF50" type="xs:string" fixed="Flat-MO-MINDF50"/>
+			<xs:element name="Vickers-0004" type="xs:string" fixed="Vickers-0004"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="LoadType">
+		<xs:sequence>
+			<xs:element name="Load" type="xs:float"/>
+			<xs:element name="Load_Unit" type="xs:string" fixed="N"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LoadingRateType">
+		<xs:sequence>
+			<xs:element name="Loading_Rate" type="xs:float"/>
+			<xs:element name="Loading_Rate_Unit" type="xs:string" fixed="N/min"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnloadingRateType">
+		<xs:sequence>
+			<xs:element name="Unloading_Rate" type="xs:float"/>
+			<xs:element name="Unloading_Rate_Unit" type="xs:string" fixed="N/min"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PIDSettings">
+		<xs:choice>
+			<xs:element name="Standard" type="xs:string" fixed="Standard"/>
+			<xs:element name="Soft" type="xs:string" fixed="Soft"/>
+			<xs:element name="UltraSoft" type="xs:string" fixed="UltraSoft"/>
+		</xs:choice>	
+	</xs:complexType>
+	<xs:complexType name="CreepType">
+		<xs:sequence>
+			<xs:element name="Creep" type="xs:float"/>
+			<xs:element name="Creep_Unit" type="xs:string" fixed="sec"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UseTargetDepthType">
+		<xs:sequence>
+			<xs:element name="Target_Depth" type="xs:float"/>
+			<xs:element name="Target_Depth_Unit" type="xs:string" fixed="microm"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MappingType">
+		<xs:sequence>
+			<xs:element name="Number_of_X" type="xs:float"/>
+			<xs:element name="XSpacing" type="XSpacingType"/>
+			<xs:element name="Number_of_Y" type="xs:float"/>
+			<xs:element name="YSpacing" type="YSpacingType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XSpacingType">
+		<xs:sequence>
+			<xs:element name="X_Spacing" type="xs:float"/>
+			<xs:element name="X_Spacing_Unit" type="xs:string" fixed="microm"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="YSpacingType">
+		<xs:sequence>
+			<xs:element name="Y_Spacing" type="xs:float"/>
+			<xs:element name="Y_Spacing_Unit" type="xs:string" fixed="microm"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StageControlPlusType">
+		<xs:sequence>
+		<xs:element name="AutoContact" type="AutoContactType"/>
+			<xs:element name="DistanceCalibration" type="DistanceCalibrationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AutoContactType">
+	<xs:sequence>
+			<xs:element name="ContactLoad" type="ContactLoadType"/>
+			<xs:element name="Approach_Speed" type="ApproachSpeedType"/>
+			<xs:element name="BackoffDistance" type="BackoffDistanceType"/>
+			</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BackoffDistanceType">
+		<xs:sequence>
+			<xs:element name="Backoff_Distance" type="xs:float"/>
+			<xs:element name="Backoff_Distance_Unit" type="xs:string" fixed="microm"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DistanceCalibrationType">
+<xs:sequence>
+			<xs:element name="IndentertoCameraDistanceX" type="IndentertoCameraDistanceXType"/>
+			<xs:element name="IndentertoCameraDistanceY" type="IndentertoCameraDistanceYType"/>
+</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IndentertoCameraDistanceXType">
+		<xs:sequence>
+			<xs:element name="Indenter_to_Camera_Distance_X" type="xs:float"/>
+			<xs:element name="Indenter_to_Camera_Distance_X_Unit" type="xs:string" fixed="mm"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IndentertoCameraDistanceYType">
+		<xs:sequence>
+			<xs:element name="Indenter_to_Camera_Distance_Y" type="xs:float"/>
+			<xs:element name="Indenter_to_Camera_Distance_Y_Unit" type="xs:string" fixed="mm"/>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:schema>
